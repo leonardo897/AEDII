@@ -7,7 +7,7 @@ import math
 # ---------------------------------------------------------------------------
 def gerar_grafo_aleatorio():
     n = random.randint(20, 30) # número de vértices
-    m = random.randint(n, n * 3) # número de arestas
+    m = random.randint(n * 2, n * 3) # número de arestas
     vertices = list(range(n))
     random.shuffle(vertices)
 
