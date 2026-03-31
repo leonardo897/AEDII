@@ -2,33 +2,30 @@
 RELATORIO DA PERSEGUICAO
 ============================================================
 
-STATUS: Ladrao foi PRESO na rodada 1.
-Numero de equipes policiais utilizadas: 8
+STATUS: Ladrao ESCAPOU por um dos portos.
+Numero de equipes policiais foi insuficiente para bloquear a rota.
 
-Total de rodadas simuladas: 1
+Total de rodadas simuladas: 2
 
 ----------------------------------------
 ROTA DE FUGA DO LADRAO:
-0 -> 22 -> 19
-Distancia total: 2.98
+0 -> 22 -> 13
+Distancia total: 4.38
 
 ----------------------------------------
 SEQUENCIA DE VERTICES VISITADOS PELO LADRAO:
-0 -> 22
-
-Rodada de captura: 1
-Posicaoo final do ladrao: 22
+0 -> 22 -> 13
 
 ----------------------------------------
 CAMINHO PERCORRIDO POR CADA POLICIAL:
-Policial 1: 20
-Policial 2: 22
-Policial 3: 20
-Policial 4: 20
-Policial 5: 21
-Policial 6: 22
-Policial 7: 2
-Policial 8: 13
+Policial 1: 23 -> 8
+Policial 2: 7 -> 1
+Policial 3: 12 -> 8
+Policial 4: 15 -> 8
+Policial 5: 9 -> 8
+Policial 6: 13 -> 0
+Policial 7: 7 -> 1
+Policial 8: 18 -> 1
 
 ----------------------------------------
-Vertices criticos identificados na rota: [22]
+Nenhum vertice critico identificado na rota.

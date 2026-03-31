@@ -249,6 +249,52 @@ def mover_policiais_bloqueio(adj, posicoes, alvo, vertices_criticos):
     return novas_posicoes
 
 # ---------------------------------------------------------------------------------------------------
+# Geração do relatório final da simulação
+# ---------------------------------------------------------------------------------------------------
+
+def gerar_relatorio(rodada, caminho_fuga, visitados_ladrao, num_policiais, historico_policiais, capturado, escapou, rodada_captura, pos_ladrao, vertices_criticos, distancia_fuga):
+    with open('relatorio.txt', 'w') as f:
+        f.write("=" * 60 + "\n")
+        f.write("RELATORIO DA PERSEGUICAO\n")
+        f.write("=" * 60 + "\n\n")
+
+        if capturado:
+            f.write(f"STATUS: Ladrao foi PRESO na rodada {rodada_captura}.\n")
+            f.write(f"Numero de equipes policiais utilizadas: {num_policiais}\n")
+        elif escapou:
+            f.write("STATUS: Ladrao ESCAPOU por um dos portos.\n")
+            f.write("Numero de equipes policiais foi insuficiente para bloquear a rota.\n")
+        else:
+            f.write("STATUS: Simulacao terminou sem captura ou fuga (limite de rodadas).\n")
+
+        f.write(f"\nTotal de rodadas simuladas: {rodada}\n")
+
+        f.write("\n" + "-" * 40 + "\n")
+        f.write("ROTA DE FUGA DO LADRAO:\n")
+        f.write(" -> ".join(map(str, caminho_fuga)) + "\n")
+        f.write(f"Distancia total: {distancia_fuga:.2f}\n")
+
+        f.write("\n" + "-" * 40 + "\n")
+        f.write("SEQUENCIA DE VERTICES VISITADOS PELO LADRAO:\n")
+        f.write(" -> ".join(map(str, visitados_ladrao)) + "\n")
+
+        if capturado:
+            f.write(f"\nRodada de captura: {rodada_captura}\n")
+            f.write(f"Posicaoo final do ladrao: {pos_ladrao}\n")
+
+        f.write("\n" + "-" * 40 + "\n")
+        f.write("CAMINHO PERCORRIDO POR CADA POLICIAL:\n")
+        for i in range(len(historico_policiais)):
+            f.write(f"Policial {i+1}: " + " -> ".join(map(str, historico_policiais[i])) + "\n")
+
+        f.write("\n" + "-" * 40 + "\n")
+        if vertices_criticos:
+            f.write(f"Vertices criticos identificados na rota: {vertices_criticos}\n")
+        else:
+            f.write("Nenhum vertice critico identificado na rota.\n")
+
+    print("Simulação concluida. Relatorio salvo em relatorio.txt")
+# ---------------------------------------------------------------------------------------------------
 # Simulação da ilha
 # ---------------------------------------------------------------------------------------------------
 def simular():
@@ -326,47 +372,7 @@ def simular():
             break
 
     # Geração do relatório
-    with open('relatorio.txt', 'w') as f:
-        f.write("=" * 60 + "\n")
-        f.write("RELATORIO DA PERSEGUICAO\n")
-        f.write("=" * 60 + "\n\n")
-
-        if capturado:
-            f.write(f"STATUS: Ladrao foi PRESO na rodada {rodada_captura}.\n")
-            f.write(f"Numero de equipes policiais utilizadas: {num_policiais}\n")
-        elif escapou:
-            f.write("STATUS: Ladrao ESCAPOU por um dos portos.\n")
-            f.write("Numero de equipes policiais foi insuficiente para bloquear a rota.\n")
-        else:
-            f.write("STATUS: Simulacao terminou sem captura ou fuga (limite de rodadas).\n")
-
-        f.write(f"\nTotal de rodadas simuladas: {rodada}\n")
-
-        f.write("\n" + "-" * 40 + "\n")
-        f.write("ROTA DE FUGA DO LADRAO:\n")
-        f.write(" -> ".join(map(str, caminho_fuga)) + "\n")
-        f.write(f"Distancia total: {distancia_fuga:.2f}\n")
-
-        f.write("\n" + "-" * 40 + "\n")
-        f.write("SEQUENCIA DE VERTICES VISITADOS PELO LADRAO:\n")
-        f.write(" -> ".join(map(str, visitados_ladrao)) + "\n")
-
-        if capturado:
-            f.write(f"\nRodada de captura: {rodada_captura}\n")
-            f.write(f"Posicaoo final do ladrao: {pos_ladrao}\n")
-
-        f.write("\n" + "-" * 40 + "\n")
-        f.write("CAMINHO PERCORRIDO POR CADA POLICIAL:\n")
-        for i in range(len(historico_policiais)):
-            f.write(f"Policial {i+1}: " + " -> ".join(map(str, historico_policiais[i])) + "\n")
-
-        f.write("\n" + "-" * 40 + "\n")
-        if vertices_criticos:
-            f.write(f"Vertices criticos identificados na rota: {vertices_criticos}\n")
-        else:
-            f.write("Nenhum vertice critico identificado na rota.\n")
-
-    print("Simulação concluida. Relatorio salvo em relatorio.txt")
+    gerar_relatorio(rodada, caminho_fuga, visitados_ladrao, num_policiais, historico_policiais, capturado, escapou, rodada_captura, pos_ladrao, vertices_criticos, distancia_fuga)
 
 # ------------------------------------------------------------
 # Execução principal
