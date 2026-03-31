@@ -1,0 +1,1 @@
+Baixe todos os arquivos para uma pasta e execute o arquivo main.py, a saída do programa vai ser impressa no arquivo relatorio.txt. Se preciso, no arquivo main.py, a linha 301 pode ser comentada para que um novo arquivo de entrada não seja criado.
