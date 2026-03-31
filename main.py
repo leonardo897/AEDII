@@ -263,7 +263,7 @@ def simular():
     if caminho_fuga is None:
         with open('relatorio.txt', 'w') as f:
             f.write("Nao ha rota de fuga possivel para o ladrao usando apenas descidas ou planicies.\n")
-            f.write("Ladrao eh capturado imediatamente.\n")
+            f.write("Ladrao foi capturado imediatamente.\n")
             f.write(f"Numero de equipes policiais: {num_policiais}\n")
             f.write("Rodada: 0\n")
         return
@@ -304,9 +304,14 @@ def simular():
             break
 
         # 2. Policiais se movem (tentam bloquear rota)
-        posicoes_policiais = mover_policiais_bloqueio(adj, posicoes_policiais, pos_ladrao, vertices_criticos)
+        adj_pol = []
+
+        for a in adj:
+            adj_pol.append([(v, abs(w)) for v, w in a])  # Policiais podem mover-se para qualquer vértice, então usam peso absoluto para movimentação
+
+        posicoes_policiais = mover_policiais_bloqueio(adj_pol, posicoes_policiais, pos_ladrao, vertices_criticos)
         
-        # Atualiza histórico de cada policial
+        # Atualiza o caminho percorrido de cada policial
         for i in range(len(posicoes_policiais)):
             historico_policiais[i].append(posicoes_policiais[i])
 
