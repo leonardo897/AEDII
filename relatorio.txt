@@ -1,0 +1,31 @@
+============================================================
+RELATORIO DA PERSEGUICAO
+============================================================
+
+STATUS: Ladrao foi PRESO na rodada 1.
+Numero de equipes policiais utilizadas: 5
+
+Total de rodadas simuladas: 1
+
+----------------------------------------
+ROTA DE FUGA DO LADRAO:
+0 -> 8 -> 14 -> 10 -> 1
+Distancia total: 15.78
+
+----------------------------------------
+SEQUENCIA DE VERTICES VISITADOS PELO LADRAO:
+0 -> 8
+
+Rodada de captura: 1
+Posicaoo final do ladrao: 8
+
+----------------------------------------
+CAMINHO PERCORRIDO POR CADA POLICIAL:
+Policial 1: 4
+Policial 2: 12
+Policial 3: 13
+Policial 4: 3
+Policial 5: 8
+
+----------------------------------------
+Vertices criticos identificados na rota: [8, 14, 10]
