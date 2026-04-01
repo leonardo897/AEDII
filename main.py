@@ -1,13 +1,14 @@
 import sys
 import random
 import math
+import heapq
 
 # ----------------------------------------------------------------------------
 # Geração de grafo aleatório 
 # ---------------------------------------------------------------------------
 def gerar_grafo_aleatorio():
-    n = random.randint(20, 30) # número de vértices
-    m = random.randint(n * 2, n * 3) # número de arestas
+    n = random.randint(80, 120) # número de vértices
+    m = random.randint(n * 3, n * 5) # número de arestas
     vertices = list(range(n))
     random.shuffle(vertices)
 
@@ -32,6 +33,8 @@ def gerar_grafo_aleatorio():
         u, v = vertices[i], vertices[i+1]
         if altitudes[v] < altitudes[u]:
             peso = -random.uniform(1, 5)
+        elif altitudes[v] == altitudes[u]:
+            peso = 0
         else:
             peso = random.uniform(6, 10)
         arestas.add((u, v, peso))
@@ -128,21 +131,22 @@ def dijkstra(adj, origem):
     dist = [float('inf')] * n
     prev = [-1] * n
     dist[origem] = 0
-    visitado = [False] * n
-    for _ in range(n):
-        u = -1
-        menor = float('inf')
-        for i in range(n):
-            if not visitado[i] and dist[i] < menor:
-                menor = dist[i]
-                u = i
-        if u == -1:
-            break
-        visitado[u] = True
+    
+    heap = [(0, origem)]  # (distância, vértice)
+    
+    while heap:
+        dist_atual, u = heapq.heappop(heap)
+        
+        if dist_atual > dist[u]:
+            continue
+        
         for v, w in adj[u]:
-            if dist[u] + w < dist[v]:
-                dist[v] = dist[u] + w
+            nova_dist = dist[u] + w
+            if nova_dist < dist[v]:
+                dist[v] = nova_dist
                 prev[v] = u
+                heapq.heappush(heap, (nova_dist, v))
+    
     return dist, prev
 
 def reconstruir_caminho(prev, destino):

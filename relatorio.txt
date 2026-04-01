@@ -9,23 +9,20 @@ Total de rodadas simuladas: 2
 
 ----------------------------------------
 ROTA DE FUGA DO LADRAO:
-0 -> 22 -> 13
-Distancia total: 4.38
+0 -> 16 -> 41
+Distancia total: 4.35
 
 ----------------------------------------
 SEQUENCIA DE VERTICES VISITADOS PELO LADRAO:
-0 -> 22 -> 13
+0 -> 16 -> 41
 
 ----------------------------------------
 CAMINHO PERCORRIDO POR CADA POLICIAL:
-Policial 1: 23 -> 8
-Policial 2: 7 -> 1
-Policial 3: 12 -> 8
-Policial 4: 15 -> 8
-Policial 5: 9 -> 8
-Policial 6: 13 -> 0
-Policial 7: 7 -> 1
-Policial 8: 18 -> 1
+Policial 1: 29 -> 37
+Policial 2: 38 -> 0
+Policial 3: 38 -> 0
+Policial 4: 19 -> 13
+Policial 5: 72 -> 67
 
 ----------------------------------------
 Nenhum vertice critico identificado na rota.
